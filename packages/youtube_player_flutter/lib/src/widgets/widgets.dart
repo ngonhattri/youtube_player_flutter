@@ -1,3 +1,4 @@
+export 'caption_controls.dart';
 export 'duration_widgets.dart';
 export 'full_screen_button.dart';
 export 'live_bottom_bar.dart';

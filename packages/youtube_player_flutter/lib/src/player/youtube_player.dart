@@ -57,6 +57,7 @@ class YoutubePlayer extends StatefulWidget {
     this.actionsPadding = const EdgeInsets.all(8.0),
     this.thumbnail,
     this.showVideoProgressIndicator = false,
+    this.showCaptionControls = false,
   })  : progressColors = progressColors ?? const ProgressBarColors(),
         progressIndicatorColor = progressIndicatorColor ?? Colors.red;
 
@@ -147,6 +148,13 @@ class YoutubePlayer extends StatefulWidget {
   /// Default is false.
   /// {@endtemplate}
   final bool showVideoProgressIndicator;
+
+  /// {@template youtube_player_flutter.showCaptionControls}
+  /// Defines whether to show caption toggle controls in the video player.
+  ///
+  /// Default is false.
+  /// {@endtemplate}
+  final bool showCaptionControls;
 
   /// Converts fully qualified YouTube Url to video id.
   ///
@@ -397,6 +405,11 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
           if (!controller.flags.hideControls)
             const Center(child: PlayPauseButton()),
           if (controller.value.hasError) errorWidget,
+          if (widget.showCaptionControls)
+            const CaptionControls(
+              iconColor: Colors.white,
+              iconSize: 22.0,
+            ),
         ],
       ),
     );

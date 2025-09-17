@@ -350,6 +350,30 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                 player.unMute();
                 return '';
             }
+            
+            function toggleCaptions() {
+                var track = player.getOption('captions', 'track');
+                if (track && track.languageCode) {
+                    player.unloadModule('captions');
+                } else {
+                    player.loadModule('captions');
+                    player.setOption('captions', 'track', {});
+                }
+                return '';
+            }
+
+            function showCaptions() {
+                player.loadModule('captions');
+                player.setOption('captions', 'track', {
+                    languageCode: 'en' // ensure this is defined
+                });
+                return '';
+            }
+
+            function hideCaptions() {
+                player.unloadModule('captions');
+                return '';
+            }
 
             function setVolume(volume) {
                 player.setVolume(volume);
